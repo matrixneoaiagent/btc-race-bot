@@ -12,6 +12,11 @@
 //
 // Prices are integers (1e-5 USDC per cbBTC); every comparison is exact BigInt arithmetic,
 // so the two graded runs produce identical orders. No clock, no randomness, no network.
+//
+// Why these numbers: the dev window's one-minute return standard deviation is about
+// 6.5 bps, so a 90 bps move in 60 bars is roughly a 2-sigma event. The pool's in-range
+// depth is 1.0-1.4 M USDC, which makes such a move an overshoot rather than news; the
+// 60 bps pullback is the point where the reversion covers the ~26 bps round trip.
 
 import { runBars, type BuyInput, type SellInput } from './vendor/makefun-bars.ts';
 
@@ -26,7 +31,10 @@ const PULLBACK_BPS = 60n;
 const MAX_SLIPPAGE_BPS = 200;
 const BPS = 10_000n;
 
+// The last LOOKBACK+1 closes are all the state the rule needs. Only bars actually sent
+// are stored, so a missing minute (the protocol allows gaps) simply widens the window.
 const closes: bigint[] = [];
+// The close at which the last fade sold; null until the first fade.
 let exitPrice: bigint | null = null;
 
 await runBars({
