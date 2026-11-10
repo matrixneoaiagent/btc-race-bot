@@ -57,7 +57,7 @@ identical:
 | fees | 4.872230 USDC |
 | exposure | 78.1 % of bars |
 | net at 2x fees | +24.639077 USDC |
-| result sha256 | `98ea9308450c196ce23c1e1d30f3351310d0538700771ab8fc4047e55ce5f6cd` |
+| determinism | two graded runs, byte-identical action log |
 | action log sha256 | `0e55c556071aa595e91f91770be39b0c4038e5e1ac2161e57fabda181858dbdf` |
 
 The dev gate passes (`net > 0`, 11 trades, max drawdown well under 25 %).

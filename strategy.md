@@ -32,7 +32,6 @@ rejected             0
 exposure             0.78125
 cost_sensitivity     24639077     (net at 2x fees, +2.4639 %)
 constraints          compliant (>=1 trade, drawdown <= 25 %)
-result_sha256        98ea9308450c196ce23c1e1d30f3351310d0538700771ab8fc4047e55ce5f6cd
 action_log_sha256    0e55c556071aa595e91f91770be39b0c4038e5e1ac2161e57fabda181858dbdf
 ```
 
